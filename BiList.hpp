@@ -1,5 +1,6 @@
 #ifndef BILIST_HPP
 #define BILIST_HPP
+#include <cstddef>
 namespace permyakov {
   template < class T >
   struct BiList {

@@ -1,5 +1,4 @@
 #include "BiList.hpp"
-#include <iostream>
 
 namespace permyakov {
   template < class T > 
@@ -99,7 +98,7 @@ namespace permyakov {
         try {
           list = new BiList < int > {0, nullptr, temp};//конструктор присваивания
         } catch (...) {
-          clearTo(head, nullptr);
+          clearTo(head, static_cast < BiList < int > * > (nullptr));
           throw;
         }
       }

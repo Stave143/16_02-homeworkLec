@@ -20,6 +20,6 @@ int main()
     list = permyakov::next(list);
   }
   delete[] vec;
-  permyakov::clearTo(permyakov::first(list), nullptr);
+  permyakov::clearTo(permyakov::first(list), static_cast< permyakov::BiList < int > * > (nullptr));
   return 0;
 }
