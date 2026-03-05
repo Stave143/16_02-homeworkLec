@@ -91,7 +91,7 @@ namespace permyakov {
     BiList < int > * list = nullptr;
     list = new BiList < int >;//конструктор по умолчанию
     BiList < int > * head = list;
-    for(size_t i = 0; i < size; ++i){
+    for(size_t i = 0; i < size; ++i) {
       BiList < int > * temp = list;
       setValue(list, vec[i]);
       if(i + 1 < size) {

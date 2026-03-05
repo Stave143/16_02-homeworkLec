@@ -17,6 +17,6 @@ namespace permyakov {
   template < class T > BiList < T > * last(BiList < T > * list);
   template < class T > BiList < T > * addAfter(BiList < T > * list1, BiList < T > * list2);
   template < class T > BiList < T > * clearToEnd(BiList < T > * list, BiList < T > * end);
-  template < class T > BiList < T > * convertVecToList(T * vec, const size_t size);
+  template < class T > BiList < T > * convertVecToList(const T * vec, const size_t size);
 }
 #endif
