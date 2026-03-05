@@ -1,4 +1,5 @@
-#include "BILIST_HPP"
+#include "BiList.hpp"
+#include <iostream>
 
 namespace permyakov {
   template < class T > 

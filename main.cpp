@@ -1,5 +1,5 @@
 #include <iostream>
-#include "BILIST_HPP"
+#include "BiList.hpp"
 
 int main()
 {  
@@ -8,17 +8,18 @@ int main()
   for(size_t i = 0; i < SIZE; ++i) {
     vec[i] = i;
   }
+  permyakov::BiList < int > * list = nullptr;
   try{
-    per::BiList list = convertVecToList(vec, SIZE);
+    list = permyakov::convertVecToList(vec, SIZE);
   } catch (...) {
     delete[] vec;
     return 1;
   }
   for(size_t i = 0; i < SIZE; ++i) {
-    std::cout << per::value(list);
-    list = next(list);
+    std::cout << permyakov::value(list);
+    list = permyakov::next(list);
   }
   delete[] vec;
-  clearTo(per::begin(list), nullptr)
+  permyakov::clearTo(permyakov::first(list), nullptr);
   return 0;
 }
