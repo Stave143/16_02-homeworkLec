@@ -8,10 +8,10 @@ namespace permyakov {
     BiList * next;
     BiList * prev;
   };
-  template < class T > T value(const BiList < T > * list);  
+  template < class T > T value(BiList < T > * list);  
   template < class T > void setValue(BiList < T > * list, const T v);
-  template < class T > BiList < T > * next(const BiList < T > * list);
-  template < class T > BiList < T > * prev(const BiList < T > * list);
+  template < class T > BiList < T > * next(BiList < T > * list);
+  template < class T > BiList < T > * prev(BiList < T > * list);
   template < class T > void setNext(BiList < T > * list, const BiList < T > * to);
   template < class T > void setPrev(BiList < T > * list, const BiList < T > * to);
   template < class T > BiList < T > * first(BiList < T > * list);
@@ -22,22 +22,28 @@ namespace permyakov {
 }
 
 int main()
-{  
+{ 
   const size_t SIZE = 10;
-  int * vec = new int(SIZE);
+  int * vec = new int[SIZE];
   for(size_t i = 0; i < SIZE; ++i) {
     vec[i] = i;
   }
-  permyakov::BiList < int > * list = nullptr;
+  permyakov::BiList < int > * list = static_cast< permyakov::BiList < int > * > (nullptr);
   try{
     list = permyakov::convertVecToList(vec, SIZE);
   } catch (...) {
     delete[] vec;
     return 1;
   }
-  for(size_t i = 0; i < SIZE; ++i) {
-    std::cout << permyakov::value(list);
-    list = permyakov::next(list);
+  try {
+    for(size_t i = 0; i < SIZE; ++i) {  
+      std::cout << permyakov::value(list) << '\n';
+      list = permyakov::next(list);
+    }
+  } catch (...) {
+    delete[] vec;
+    permyakov::clearTo(permyakov::first(list), static_cast< permyakov::BiList < int > * > (nullptr));
+    return 1;
   }
   delete[] vec;
   permyakov::clearTo(permyakov::first(list), static_cast< permyakov::BiList < int > * > (nullptr));
@@ -46,7 +52,7 @@ int main()
 
 namespace permyakov {
   template < class T > 
-  T value(const BiList < T > * list)
+  T value(BiList < T > * list)
   {
     return list -> val;
   }
@@ -58,13 +64,13 @@ namespace permyakov {
   }
 
   template < class T > 
-  BiList < T > * next(const BiList < T > * list)
+  BiList < T > * next(BiList < T > * list)
   {
     return list -> next;
   }
 
   template < class T > 
-  BiList < T > * prev(const BiList < T > * list)
+  BiList < T > * prev(BiList < T > * list)
   {
     return list -> prev;
   }
@@ -148,6 +154,7 @@ namespace permyakov {
           throw;
         }
       }
+      setNext(temp, list);
     }
     return head;
   }
