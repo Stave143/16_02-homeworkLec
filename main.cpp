@@ -38,6 +38,7 @@ int main()
   try {
     for(size_t i = 0; i < SIZE; ++i) {  
       std::cout << permyakov::value(list) << '\n';
+
       list = permyakov::next(list);
     }
   } catch (...) {
@@ -66,12 +67,18 @@ namespace permyakov {
   template < class T > 
   BiList < T > * next(BiList < T > * list)
   {
+    if(!(list -> next)) {
+      return first(list);
+    }
     return list -> next;
   }
 
   template < class T > 
   BiList < T > * prev(BiList < T > * list)
   {
+    if(!(list -> prev)) {
+      return last(list);
+    }
     return list -> prev;
   }
 
@@ -127,12 +134,12 @@ namespace permyakov {
       list = next(list);
       delete[] prev(list);
     }
-    setPrev(list, temp);
+    delete[] list;
     if(temp) {
-      setNext(temp, list);
+      setNext(temp, end);
     }
     if(end) {
-      setPrev(end, list);
+      setPrev(end, temp);
     }
     return end;
   }
